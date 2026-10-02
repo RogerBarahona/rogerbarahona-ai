@@ -1,0 +1,71 @@
+{
+  "name": "Roger Barahona",
+  "headline": "Senior Product Owner | Product Manager | QSR & POS Technology | Enterprise SaaS",
+  "location": "Fort Lauderdale, Florida",
+  "summary": "Senior Product Owner with over a decade of experience leading digital transformation across global QSR and enterprise environments. Experience integrating POS, mobile ordering, delivery optimization and loyalty systems into unified SaaS platforms, defining product vision and scalable roadmaps, and aligning cross-functional teams across North America and LATAM.",
+  "focus": [
+    "Product Management",
+    "Product Ownership",
+    "QSR / Restaurant Technology",
+    "POS",
+    "Enterprise SaaS",
+    "Omnichannel Ordering",
+    "Digital Transformation",
+    "Agile Delivery",
+    "Requirements",
+    "Roadmaps",
+    "Backlog Management",
+    "SIT / UAT",
+    "Release Planning"
+  ],
+  "experience": [
+    {
+      "company": "LTM",
+      "role": "Senior Business Analyst",
+      "period": "2026–Present",
+      "details": [
+        "Plans and executes throughout the lifecycle of software solutions within the business domain.",
+        "Creates and prioritizes product and business requirements."
+      ]
+    },
+    {
+      "company": "JM Family Enterprises",
+      "role": "Senior Business Analyst",
+      "period": "2025–2026",
+      "details": [
+        "Supported a distribution-system upgrade serving 178 independent Toyota dealerships.",
+        "Coordinated SIT and UAT and defect reporting using Microsoft Azure DevOps.",
+        "Supported deployment of Microsoft Dynamics D365 F&O and CE across a distribution system with 30+ integrations."
+      ]
+    },
+    {
+      "company": "Subway",
+      "role": "Senior Product Owner / Senior Business Analyst / Regional CoE Manager / Business Analyst / Project Manager",
+      "period": "2015–2025",
+      "details": [
+        "Drove omnichannel transformation of the SUBWAY POS platform across 30K+ restaurants globally.",
+        "Unified in-store POS, mobile ordering, delivery and loyalty capabilities in a SaaS ecosystem.",
+        "Defined global product roadmaps and translated stakeholder input into user stories, acceptance criteria and sprint-ready backlogs.",
+        "Integrated Uber Eats and DoorDash with the POS ecosystem.",
+        "Implemented an AWS-based resiliency solution for business continuity.",
+        "Led Auto-Publishing and Screen Builder/Designer capabilities.",
+        "Led and supported POS deployments across LATAM and the Caribbean, including Puerto Rico, Colombia, Curacao, Mexico, Cayman Islands, Aruba, US Virgin Islands and Trinidad & Tobago.",
+        "Oversaw a real-time CFDI fiscal integration for Mexico restaurants supporting SAT compliance."
+      ]
+    }
+  ],
+  "certifications": [
+    "Certified Scrum Product Owner (CSPO) — Scrum Alliance",
+    "Certified ScrumMaster (CSM) — Scrum Alliance",
+    "Certified SAFe Agilist — Scaled Agile"
+  ],
+  "languages": [
+    "English — Native",
+    "Spanish — Native",
+    "Portuguese — Limited"
+  ],
+  "links": {
+    "github": "https://github.com/RogerBarahona",
+    "linkedin": "https://www.linkedin.com/in/rogerbarahona/"
+  }
+}
