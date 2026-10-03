@@ -22,16 +22,16 @@
     {
       "company": "LTM",
       "role": "Senior Business Analyst",
-      "period": "2026–Present",
+      "period": "Jun 2026-Present",
       "details": [
         "Plans and executes throughout the lifecycle of software solutions within the business domain.",
         "Creates and prioritizes product and business requirements."
       ]
     },
     {
-      "company": "JM Family Enterprises",
+      "company": "JM Family Enterprises, Inc.",
       "role": "Senior Business Analyst",
-      "period": "2025–2026",
+      "period": "Feb 2025-Jun 2026",
       "details": [
         "Supported a distribution-system upgrade serving 178 independent Toyota dealerships.",
         "Coordinated SIT and UAT and defect reporting using Microsoft Azure DevOps.",
@@ -40,24 +40,55 @@
     },
     {
       "company": "Subway",
-      "role": "Senior Product Owner / Senior Business Analyst / Regional CoE Manager / Business Analyst / Project Manager",
-      "period": "2015–2025",
+      "role": "Senior Product Owner",
+      "period": "Aug 2023-Feb 2025",
       "details": [
-        "Drove omnichannel transformation of the SUBWAY POS platform across 30K+ restaurants globally.",
-        "Unified in-store POS, mobile ordering, delivery and loyalty capabilities in a SaaS ecosystem.",
-        "Defined global product roadmaps and translated stakeholder input into user stories, acceptance criteria and sprint-ready backlogs.",
+        "Drove omnichannel transformation of the Subway POS platform across 30K+ restaurants globally.",
+        "Worked across in-store POS, mobile ordering, delivery and loyalty capabilities.",
+        "Defined product roadmaps and translated stakeholder input into user stories, acceptance criteria and prioritized backlogs."
+      ]
+    },
+    {
+      "company": "Subway",
+      "role": "Senior Business Analyst",
+      "period": "Jan 2020-Aug 2023",
+      "details": [
         "Integrated Uber Eats and DoorDash with the POS ecosystem.",
+        "Supported curbside ordering capabilities.",
         "Implemented an AWS-based resiliency solution for business continuity.",
-        "Led Auto-Publishing and Screen Builder/Designer capabilities.",
-        "Led and supported POS deployments across LATAM and the Caribbean, including Puerto Rico, Colombia, Curacao, Mexico, Cayman Islands, Aruba, US Virgin Islands and Trinidad & Tobago.",
-        "Oversaw a real-time CFDI fiscal integration for Mexico restaurants supporting SAT compliance."
+        "Led or supported Auto-Publishing and Screen Builder/Designer capabilities."
+      ]
+    },
+    {
+      "company": "Subway",
+      "role": "Regional Center of Excellence Manager",
+      "period": "May 2019-Jan 2020",
+      "details": [
+        "Led regional restaurant technology and POS deployment work across LATAM and the Caribbean."
+      ]
+    },
+    {
+      "company": "Subway",
+      "role": "Business Analyst",
+      "period": "Jan 2017-May 2019",
+      "details": [
+        "Supported restaurant technology and POS initiatives across LATAM and the Caribbean.",
+        "Supported a real-time CFDI fiscal integration for Mexico restaurants for SAT compliance."
+      ]
+    },
+    {
+      "company": "IPC / Subway",
+      "role": "Project Manager",
+      "period": "Apr 2015-Jan 2017",
+      "details": [
+        "Led and supported POS deployments across Puerto Rico, Colombia, Curacao, Mexico, Cayman Islands, Aruba, US Virgin Islands and Trinidad & Tobago."
       ]
     }
   ],
   "certifications": [
-    "Certified Scrum Product Owner (CSPO) — Scrum Alliance",
-    "Certified ScrumMaster (CSM) — Scrum Alliance",
-    "Certified SAFe Agilist — Scaled Agile"
+    "Certified Scrum Product Owner (CSPO) - Scrum Alliance - May 2026",
+    "Certified ScrumMaster (CSM) - Scrum Alliance - May 2026",
+    "Certified SAFe Agilist - Scaled Agile - Oct 2024"
   ],
   "languages": [
     "English — Native",
