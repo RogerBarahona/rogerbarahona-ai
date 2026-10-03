@@ -23,7 +23,7 @@ module.exports=async function handler(req,res){
   if(!process.env.OPENAI_API_KEY) return res.status(503).json({error:'AI service is not configured.'});
 
   const days=req.body?.days===14?14:7;
-  const roles=['Senior Product Owner','Product Manager','Senior Product Manager','Technical Product Owner','Senior Business Analyst'];
+  const roles=['Senior Product Owner','Senior Product Manager','Technical Product Owner','Senior Business Analyst'];
   const today=new Date().toISOString().slice(0,10);
   const compactProfile={
     positioning:'Senior Product Owner / Product Manager with 10+ years in digital transformation, QSR/restaurant technology and enterprise delivery',
@@ -50,7 +50,7 @@ Use only verifiable current postings. Prefer employer career pages and reputable
 
 Return ONLY JSON:
 {"searched_days":${days},"jobs":[{"title":"","company":"","location":"","work_arrangement":"","employment_type":"","compensation":"","posted":"","url":"","priority":"Strong Alignment|Worth Reviewing|Lower Alignment","why":"","transferable":"","not_established":""}]}
-Return at most 5 jobs, best aligned first. Keep analysis fields to one concise sentence each. Use "Not published" when needed.
+Return at most 3 jobs, best aligned first. Keep analysis fields to one concise sentence each. Use "Not published" when needed.
 
 PROFILE:
 ${JSON.stringify(compactProfile)}`;
@@ -62,7 +62,7 @@ ${JSON.stringify(compactProfile)}`;
       method:'POST',
       headers:{'Content-Type':'application/json','Authorization':'Bearer '+process.env.OPENAI_API_KEY},
       signal:controller.signal,
-      body:JSON.stringify({model:'gpt-6-luna',tools:[{type:'web_search',search_context_size:'low'}],input:prompt,max_output_tokens:3200,text:{format:{type:'json_schema',name:'job_search_results',strict:true,schema:{type:'object',properties:{searched_days:{type:'integer'},jobs:{type:'array',items:{type:'object',properties:{title:{type:'string'},company:{type:'string'},location:{type:'string'},work_arrangement:{type:'string'},employment_type:{type:'string'},compensation:{type:'string'},posted:{type:'string'},url:{type:'string'},priority:{type:'string',enum:['Strong Alignment','Worth Reviewing','Lower Alignment']},why:{type:'string'},transferable:{type:'string'},not_established:{type:'string'}},required:['title','company','location','work_arrangement','employment_type','compensation','posted','url','priority','why','transferable','not_established'],additionalProperties:false}}},required:['searched_days','jobs'],additionalProperties:false}}}})
+      body:JSON.stringify({model:'gpt-6-luna',tools:[{type:'web_search',search_context_size:'low'}],input:prompt,max_output_tokens:2200,text:{format:{type:'json_schema',name:'job_search_results',strict:true,schema:{type:'object',properties:{searched_days:{type:'integer'},jobs:{type:'array',items:{type:'object',properties:{title:{type:'string'},company:{type:'string'},location:{type:'string'},work_arrangement:{type:'string'},employment_type:{type:'string'},compensation:{type:'string'},posted:{type:'string'},url:{type:'string'},priority:{type:'string',enum:['Strong Alignment','Worth Reviewing','Lower Alignment']},why:{type:'string'},transferable:{type:'string'},not_established:{type:'string'}},required:['title','company','location','work_arrangement','employment_type','compensation','posted','url','priority','why','transferable','not_established'],additionalProperties:false}}},required:['searched_days','jobs'],additionalProperties:false}}}})
     });
     clearTimeout(timer);
     const data=await response.json();
