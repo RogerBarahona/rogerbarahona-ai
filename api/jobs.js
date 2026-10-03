@@ -56,7 +56,22 @@ ${JSON.stringify(PROFILE)}`;
     });
     clearTimeout(timer);
     const data=await response.json();
-    if(!response.ok){console.error('Job search API error',response.status,data?.error?.code);return res.status(502).json({error:'The job search service could not complete this search. Please try again.'})}
+    if(!response.ok){
+      const safeError={
+        status:response.status,
+        code:data?.error?.code||'unknown',
+        type:data?.error?.type||'unknown',
+        message:String(data?.error?.message||'').slice(0,500),
+        limit:response.headers.get('x-ratelimit-limit-requests'),
+        remaining:response.headers.get('x-ratelimit-remaining-requests'),
+        reset:response.headers.get('x-ratelimit-reset-requests'),
+        tokenLimit:response.headers.get('x-ratelimit-limit-tokens'),
+        tokenRemaining:response.headers.get('x-ratelimit-remaining-tokens'),
+        tokenReset:response.headers.get('x-ratelimit-reset-tokens')
+      };
+      console.error('Job search API diagnostic',JSON.stringify(safeError));
+      return res.status(502).json({error:'The job search service could not complete this search. Please try again.'})
+    }
     const parsed=parseJson(extractText(data));
     if(!parsed||!Array.isArray(parsed.jobs)) return res.status(502).json({error:'The search completed, but the results could not be formatted. Please try again.'});
     return res.status(200).json(parsed);
