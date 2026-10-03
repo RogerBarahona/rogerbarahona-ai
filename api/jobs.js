@@ -62,7 +62,7 @@ ${JSON.stringify(compactProfile)}`;
       method:'POST',
       headers:{'Content-Type':'application/json','Authorization':'Bearer '+process.env.OPENAI_API_KEY},
       signal:controller.signal,
-      body:JSON.stringify({model:'gpt-6-luna',tools:[{type:'web_search',search_context_size:'low'}],input:prompt,max_output_tokens:1800})
+      body:JSON.stringify({model:'gpt-6-luna',tools:[{type:'web_search',search_context_size:'low'}],input:prompt,max_output_tokens:1800,text:{format:{type:'json_schema',name:'job_search_results',strict:true,schema:{type:'object',properties:{searched_days:{type:'integer'},jobs:{type:'array',items:{type:'object',properties:{title:{type:'string'},company:{type:'string'},location:{type:'string'},work_arrangement:{type:'string'},employment_type:{type:'string'},compensation:{type:'string'},posted:{type:'string'},url:{type:'string'},priority:{type:'string',enum:['Strong Alignment','Worth Reviewing','Lower Alignment']},why:{type:'string'},transferable:{type:'string'},not_established:{type:'string'}},required:['title','company','location','work_arrangement','employment_type','compensation','posted','url','priority','why','transferable','not_established'],additionalProperties:false}}},required:['searched_days','jobs'],additionalProperties:false}}}}})
     });
     clearTimeout(timer);
     const data=await response.json();
@@ -83,7 +83,7 @@ ${JSON.stringify(compactProfile)}`;
       return res.status(502).json({error:'The job search service could not complete this search. Please try again.'})
     }
     const parsed=parseJson(extractText(data));
-    if(!parsed||!Array.isArray(parsed.jobs)) return res.status(502).json({error:'The search completed, but the results could not be formatted. Please try again.'});
+    if(!parsed||!Array.isArray(parsed.jobs)){console.error('Job search format diagnostic',JSON.stringify({status:data?.status||'unknown',outputTypes:(data?.output||[]).map(x=>x?.type),textPreview:extractText(data).slice(0,300)}));return res.status(502).json({error:'The search completed, but the results could not be formatted. Please try again.'});}
     return res.status(200).json(parsed);
   }catch(e){
     console.error('Private job search error',e?.name||'error');
