@@ -47,12 +47,12 @@ ${JSON.stringify(PROFILE)}`;
 
   try{
     const controller=new AbortController();
-    const timer=setTimeout(()=>controller.abort(),28000);
+    const timer=setTimeout(()=>controller.abort(),55000);
     const response=await fetch('https://api.openai.com/v1/responses',{
       method:'POST',
       headers:{'Content-Type':'application/json','Authorization':'Bearer '+process.env.OPENAI_API_KEY},
       signal:controller.signal,
-      body:JSON.stringify({model:'gpt-6-luna',tools:[{type:'web_search'}],input:prompt,max_output_tokens:3500})
+      body:JSON.stringify({model:'gpt-6-luna',tools:[{type:'web_search'}],input:prompt,max_output_tokens:2600})
     });
     clearTimeout(timer);
     const data=await response.json();
