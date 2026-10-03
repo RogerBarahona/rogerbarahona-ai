@@ -67,5 +67,44 @@
   "links": {
     "github": "https://github.com/RogerBarahona",
     "linkedin": "https://www.linkedin.com/in/rogerbarahona/"
-  }
+  },
+  "education": [
+    {
+      "degree": "Industrial Engineering",
+      "institution": "Universidad Tecnologica Centroamericana",
+      "location": "Honduras",
+      "period": "1997-2005"
+    }
+  ],
+  "skills": [
+    "Agile Methodologies",
+    "Requirements Gathering",
+    "Stakeholder Management",
+    "Roadmap Prioritization",
+    "Backlog Management",
+    "Sprint Planning",
+    "Risk Management",
+    "Cross Functional Collaboration",
+    "Release Planning",
+    "User Story Writing and Prioritization",
+    "Project Management",
+    "Product Management",
+    "Scrum",
+    "Documentation",
+    "UAT",
+    "Quality Assurance"
+  ],
+  "tools": [
+    "POS systems",
+    "Jira",
+    "Confluence",
+    "Microsoft Azure DevOps",
+    "Microsoft Dynamics 365 F&O",
+    "Microsoft Dynamics 365 CE",
+    "qTest",
+    "SharePoint",
+    "AWS",
+    "Uber Eats integration",
+    "DoorDash integration"
+  ]
 }
