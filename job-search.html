@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#06111e">
+<title>Roger Job Search | Private</title>
+<style>
+:root{--bg:#06111e;--card:#0b1c2d;--line:#17344a;--text:#edf7fb;--muted:#9fb5c3;--teal:#32d5c4;--blue:#5da9ff}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#06111e,#081827);color:var(--text);font:15px/1.55 Inter,system-ui,Segoe UI,Arial,sans-serif}.wrap{max-width:1180px;margin:auto;padding:28px 20px 60px}
+nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:48px}.brand{font-weight:800;letter-spacing:.08em;color:white;text-decoration:none}.private{color:var(--teal);font-size:12px;border:1px solid var(--line);padding:6px 10px;border-radius:999px}
+h1{font-size:clamp(36px,6vw,68px);line-height:1;margin:0 0 16px;max-width:850px}.lead{color:var(--muted);font-size:18px;max-width:760px}
+.panel,.job{background:rgba(11,28,45,.9);border:1px solid var(--line);border-radius:18px;padding:20px}.panel{margin:28px 0}.controls{display:grid;grid-template-columns:1fr auto auto;gap:10px}
+input,select,button{font:inherit;border-radius:10px;border:1px solid var(--line);padding:12px 14px}input,select{background:#071522;color:white}button{background:var(--teal);color:#03201d;font-weight:800;cursor:pointer}button:disabled{opacity:.55;cursor:wait}
+.criteria{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.pill{border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:5px 9px;font-size:12px}
+.status{color:var(--muted);margin:18px 0}.grid{display:grid;gap:16px}.job h2{margin:0;font-size:22px}.company{color:var(--teal);font-weight:700}.meta{color:var(--muted);margin:7px 0 14px}.priority{display:inline-block;border:1px solid var(--teal);color:var(--teal);border-radius:999px;padding:4px 9px;font-size:12px;font-weight:800;margin-bottom:12px}.job p{margin:9px 0}.label{color:#fff;font-weight:700}.apply{display:inline-block;margin-top:10px;color:#06111e;background:var(--teal);text-decoration:none;font-weight:800;padding:9px 13px;border-radius:9px}
+.note{color:var(--muted);font-size:12px;margin-top:20px}@media(max-width:700px){.controls{grid-template-columns:1fr}.wrap{padding-top:20px}nav{margin-bottom:32px}}
+</style></head><body><div class="wrap">
+<nav><a class="brand" href="/">ROGER BARAHONA</a><span class="private">PRIVATE JOB SEARCH</span></nav>
+<main><h1>Find the next opportunity.</h1><p class="lead">Live job discovery matched against Roger's verified professional profile — focused on South Florida and remote U.S. opportunities.</p>
+<section class="panel"><div class="controls"><input id="key" type="password" autocomplete="current-password" placeholder="Private access password"><select id="days"><option value="7">Last 7 days</option><option value="14">Last 14 days</option></select><button id="search">Search Current Jobs</button></div>
+<div class="criteria"><span class="pill">Senior Product Owner</span><span class="pill">Product Manager</span><span class="pill">Senior Product Manager</span><span class="pill">Technical Product Owner</span><span class="pill">Senior Business Analyst</span><span class="pill">South Florida + Remote U.S.</span><span class="pill">$130K+ / $65+ hr preferred</span></div></section>
+<div id="status" class="status">Enter your private password, then search.</div><section id="results" class="grid"></section>
+<p class="note">Results are based on current web listings and may change or expire. Alignment is evidence-based, not a hiring recommendation or numeric match score.</p></main></div>
+<script>
+const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+$('search').onclick=async()=>{
+ const btn=$('search'),key=$('key').value.trim(),days=Number($('days').value);
+ if(!key){$('status').textContent='Enter your private access password first.';return}
+ btn.disabled=true;$('results').innerHTML='';$('status').textContent='Searching current openings and comparing them with your verified profile…';
+ try{
+  const r=await fetch('/api/jobs',{method:'POST',headers:{'Content-Type':'application/json','X-Job-Search-Key':key},body:JSON.stringify({days})});
+  const d=await r.json(); if(!r.ok) throw new Error(d.error||'Search failed');
+  const jobs=d.jobs||[];$('status').textContent=jobs.length?'Found '+jobs.length+' current opportunities to review.':'No strong current opportunities were returned. Try the 14-day search.';
+  $('results').innerHTML=jobs.map(j=>`<article class="job"><div class="priority">${esc(j.priority)}</div><h2>${esc(j.title)}</h2><div class="company">${esc(j.company)}</div><div class="meta">${esc(j.location)} · ${esc(j.work_arrangement)} · ${esc(j.employment_type)} · ${esc(j.compensation)} · Posted: ${esc(j.posted)}</div><p><span class="label">Why it aligns:</span> ${esc(j.why)}</p><p><span class="label">Transferable:</span> ${esc(j.transferable)}</p><p><span class="label">Not established:</span> ${esc(j.not_established)}</p>${/^https?:\/\//i.test(j.url||'')?`<a class="apply" href="${esc(j.url)}" target="_blank" rel="noopener noreferrer">View / Apply</a>`:''}</article>`).join('');
+ }catch(e){$('status').textContent=e.message||'Search failed. Please try again.'}
+ finally{btn.disabled=false}
+};
+</script></body></html>
