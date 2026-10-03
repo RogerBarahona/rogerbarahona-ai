@@ -62,7 +62,7 @@ ${JSON.stringify(compactProfile)}`;
       method:'POST',
       headers:{'Content-Type':'application/json','Authorization':'Bearer '+process.env.OPENAI_API_KEY},
       signal:controller.signal,
-      body:JSON.stringify({model:'gpt-6-luna',tools:[{type:'web_search'}],input:prompt,max_output_tokens:2600})
+      body:JSON.stringify({model:'gpt-6-luna',tools:[{type:'web_search',search_context_size:'low'}],input:prompt,max_output_tokens:1800})
     });
     clearTimeout(timer);
     const data=await response.json();
