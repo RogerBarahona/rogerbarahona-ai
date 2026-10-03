@@ -25,25 +25,35 @@ module.exports=async function handler(req,res){
   const days=req.body?.days===14?14:7;
   const roles=['Senior Product Owner','Product Manager','Senior Product Manager','Technical Product Owner','Senior Business Analyst'];
   const today=new Date().toISOString().slice(0,10);
-  const prompt=`Today is ${today}. Search the live web for CURRENT job openings posted within the last ${days} days for Roger Barahona.
+  const compactProfile={
+    positioning:'Senior Product Owner / Product Manager with 10+ years in digital transformation, QSR/restaurant technology and enterprise delivery',
+    current:'LTM Senior Business Analyst (Jun 2026-present): software lifecycle planning/execution and product/business requirements',
+    jmFamily:'JM Family Senior Business Analyst (Feb 2025-Jun 2026): distribution system serving 178 independent Toyota dealerships; SIT/UAT; Azure DevOps; D365 F&O/CE; 30+ integrations',
+    subwayPO:'Subway Senior Product Owner (Aug 2023-Feb 2025): omnichannel POS ecosystem across 30K+ restaurants; POS, mobile, delivery, loyalty; roadmaps, stories, acceptance criteria and backlogs',
+    subwayBA:'Subway Senior Business Analyst (Jan 2020-Aug 2023): Uber Eats/DoorDash, curbside, AWS resiliency, Auto-Publishing and Screen Builder/Designer',
+    international:'Subway/IPC roles (2015-2020): LATAM/Caribbean POS rollouts and Mexico CFDI/SAT; markets included Puerto Rico, Colombia, Curacao, Mexico, Cayman Islands, Aruba, USVI and Trinidad & Tobago',
+    certifications:['CSPO (May 2026)','CSM (May 2026)','SAFe Agilist (Oct 2024)'],
+    education:'Industrial Engineering, Universidad Tecnologica Centroamericana',
+    languages:'English and Spanish native; Portuguese limited'
+  };
+  const prompt=`Today is ${today}. Find current U.S. job openings posted within the last ${days} days.
 
-SEARCH TARGETS
+TARGET
 Roles: ${roles.join(', ')}
-Geography: (1) remote jobs anywhere in the United States and (2) South Florida including Fort Lauderdale, Miami, Miramar and Boca Raton.
-Employment: full-time, contract, and contract-to-hire.
-Compensation preference: permanent roles $130,000+ base; contract/contract-to-hire $65+/hour. Do NOT exclude a strong role merely because compensation is unpublished. Clearly flag published compensation below preference.
-Give additional relevance to QSR/restaurant technology, POS, omnichannel/eCommerce, enterprise SaaS, digital transformation, integrations, Agile/SAFe and LATAM/international work, but do not require those domains.
+Location: remote U.S. OR South Florida (Fort Lauderdale, Miami, Miramar, Boca Raton).
+Employment: full-time, contract, contract-to-hire.
+Preferences: permanent $130K+ base; contract $65+/hr. Unpublished pay is eligible.
+Prioritize QSR/restaurant tech, POS, omnichannel/eCommerce, enterprise SaaS, digital transformation, integrations, Agile/SAFe, and LATAM/international experience when relevant.
 
-Use only real, current postings you can verify on the web. Prefer direct employer career pages and reputable job boards. Deduplicate reposts. Do not invent dates, compensation, work arrangement, requirements or URLs. Exclude roles that are clearly closed, expired, outside the geography, or materially different in seniority/function.
+RULES
+Use only verifiable current postings. Prefer employer career pages and reputable boards. Deduplicate. Exclude clearly closed/expired, wrong geography, or materially different roles. Never invent fields. Compare only with PROFILE below; missing information means "not established", not that Roger lacks it. No numeric score.
 
-Compare each job ONLY against the verified PROFILE DATA below. Missing profile information means "not established", not that Roger lacks the skill. Do not create a numeric match score.
-
-Return ONLY valid JSON with this exact shape:
+Return ONLY JSON:
 {"searched_days":${days},"jobs":[{"title":"","company":"","location":"","work_arrangement":"","employment_type":"","compensation":"","posted":"","url":"","priority":"Strong Alignment|Worth Reviewing|Lower Alignment","why":"","transferable":"","not_established":""}]}
-Return up to 12 strong, non-duplicate openings, ordered with the most relevant opportunities first. Keep why, transferable and not_established concise and evidence-based. If a field is not published, use "Not published" or "Not established" rather than guessing.
+Return at most 6 jobs, best aligned first. Keep analysis fields to one concise sentence each. Use "Not published" when needed.
 
-VERIFIED PROFILE DATA:
-${JSON.stringify(PROFILE)}`;
+PROFILE:
+${JSON.stringify(compactProfile)}`;
 
   try{
     const controller=new AbortController();
