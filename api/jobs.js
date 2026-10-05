@@ -57,7 +57,7 @@ ${JSON.stringify(compactProfile)}`;
 
   try{
     const controller=new AbortController();
-    const timer=setTimeout(()=>controller.abort(),110000);
+    const timer=setTimeout(()=>controller.abort(),240000);
     const response=await fetch('https://api.openai.com/v1/responses',{
       method:'POST',
       headers:{'Content-Type':'application/json','Authorization':'Bearer '+process.env.OPENAI_API_KEY},
