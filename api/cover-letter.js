@@ -25,21 +25,25 @@ ${jobDescription}
 Write a ${length} cover letter in a ${tone} tone.
 
 Rules:
+- Write the entire cover letter in FIRST PERSON from Roger's perspective, using natural first-person language such as "I", "my", and "I've". Never refer to Roger as "Roger", "he", "his", "the candidate", or any other third-person description in the body of the letter.
 - Use ONLY facts supported by the verified profile. Never invent experience, metrics, employers, tools, education, certifications, dates, or achievements.
 - Tailor the letter to the actual role and employer when they are identifiable in the job description.
-- Open with a specific connection between the employer/role and Roger's most relevant documented experience. Do NOT open by introducing Roger with his title, years of experience, or a resume-style summary.
+- Open with a specific connection between the employer/role and my most relevant documented experience. Do NOT open by introducing me with my title, years of experience, or a resume-style summary.
 - Avoid openings such as "I'm a Senior Product Owner with..." or similar biography-first introductions.
-- The first sentence should explain why Roger's background is relevant to this employer's problem, product, customers, or responsibilities. Keep it natural rather than flattering the company generically.
-- Prioritize only the 2-3 strongest documented connections between Roger's background and the role. Relevance is more important than quantity.
-- Before writing, identify the job description's most important skills, responsibilities, domain terms, product terms, and recurring phrases. Naturally mirror high-value terminology ONLY when Roger's verified profile genuinely supports it.
+- The first sentence should explain why my background is relevant to this employer's problem, product, customers, or responsibilities. Keep it natural rather than flattering the company generically.
+- Prioritize only the 2-3 strongest documented connections between my background and the role. Relevance is more important than quantity.
+- Before writing, identify the job description's most important skills, responsibilities, domain terms, product terms, and recurring phrases. Naturally mirror high-value terminology ONLY when my verified profile genuinely supports it.
 - Optimize for ATS/AI screening without keyword stuffing: use supported job-description terminology in context, preserve readability, and never add an unsupported skill or qualification merely because it appears in the job description.
 - Do not turn the letter into a compressed resume. Omit valid but lower-relevance accomplishments when stronger role-specific evidence is available.
-- Product Manager requirements may be supported by documented Product Owner responsibilities when genuinely transferable; do not falsely change Roger's job titles.
+- Product Manager requirements may be supported by documented Product Owner responsibilities when genuinely transferable; do not falsely change my job titles.
 - Do not mention missing qualifications or apologize for gaps.
 - Do not start with "I'm excited to apply" or generic enthusiasm.
 - Avoid clichés, keyword stuffing, and repeating the resume.
 - Keep it recruiter-friendly and natural.
-- HARD LIMIT: no more than 2 body paragraphs, regardless of length setting.\n- Concise = 2 body paragraphs, about 180-250 words total. Very-short = 1 body paragraph, about 120-170 words total.\n- Greeting and closing/signature do not count as body paragraphs.\n- Do not split the body into extra paragraphs. Compress or omit lower-priority details instead.
+- HARD LIMIT: no more than 2 body paragraphs, regardless of length setting.
+- Concise = 2 body paragraphs, about 180-250 words total. Very-short = 1 body paragraph, about 120-170 words total.
+- Greeting and closing/signature do not count as body paragraphs.
+- Do not split the body into extra paragraphs. Compress or omit lower-priority details instead.
 - Do not invent a hiring manager name, street address, email, phone number, or date.
 - Return ONLY the letter body with a brief greeting and closing. Use "Dear Hiring Team," if no recipient is explicitly named. Close with "Sincerely,\\nRoger Barahona".`;
 
