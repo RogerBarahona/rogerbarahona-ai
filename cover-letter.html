@@ -30,7 +30,7 @@ async function generate(){
  try{
   const r=await fetch('/api/cover-letter',{method:'POST',headers:{'Content-Type':'application/json','X-Job-Search-Key':key},body:JSON.stringify({jobDescription,length:$('length').value,tone:$('tone').value})});
   const d=await r.json();if(!r.ok)throw new Error(d.error||'Generation failed');
-  $('letter').textContent=d.letter;$('output').style.display='block';$('status').textContent='Cover letter ready. Review it before submitting.';$('output').scrollIntoView({behavior:'smooth',block:'start'});
+  $('letter').textContent=d.letter;$('jd').value='';$('output').style.display='block';$('status').textContent='Cover letter ready. The job description field has been cleared for your next role.';$('output').scrollIntoView({behavior:'smooth',block:'start'});
  }catch(e){$('status').textContent=e.message||'Generation failed. Please try again.'}finally{btn.disabled=false}
 }
 $('generate').onclick=generate;$('regenerate').onclick=generate;
