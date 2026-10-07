@@ -1,0 +1,61 @@
+const profile = require('../data/profile.json');
+
+module.exports = async function handler(req,res){
+  res.setHeader('X-Robots-Tag','noindex, nofollow');
+  if(req.method!=='POST') return res.status(405).json({error:'Method not allowed'});
+  const expected=process.env.JOB_SEARCH_PASSWORD;
+  if(!expected) return res.status(503).json({error:'Private cover letter service is not configured yet.'});
+  if(req.headers['x-job-search-key']!==expected) return res.status(401).json({error:'Incorrect private access password.'});
+  if(!process.env.OPENAI_API_KEY) return res.status(503).json({error:'AI service is not configured.'});
+
+  const jobDescription=String(req.body?.jobDescription||'').trim();
+  const length=req.body?.length==='short'?'short':'standard';
+  const tone=req.body?.tone==='conversational'?'conversational':'professional';
+  if(jobDescription.length<80) return res.status(400).json({error:'Paste a fuller job description so the letter can be tailored accurately.'});
+  if(jobDescription.length>12000) return res.status(400).json({error:'Job description is too long. Please keep it under 12,000 characters.'});
+
+  const prompt=`You are writing a tailored cover letter for Roger Barahona.
+
+VERIFIED PROFILE:
+${JSON.stringify(profile)}
+
+JOB DESCRIPTION:
+${jobDescription}
+
+Write a ${length} cover letter in a ${tone} tone.
+
+Rules:
+- Use ONLY facts supported by the verified profile. Never invent experience, metrics, employers, tools, education, certifications, dates, or achievements.
+- Tailor the letter to the actual role and employer when they are identifiable in the job description.
+- Prioritize the 2-4 strongest documented connections between Roger's background and the role.
+- Product Manager requirements may be supported by documented Product Owner responsibilities when genuinely transferable; do not falsely change Roger's job titles.
+- Do not mention missing qualifications or apologize for gaps.
+- Do not start with "I'm excited to apply" or generic enthusiasm.
+- Avoid clichés, keyword stuffing, and repeating the resume.
+- Keep it recruiter-friendly and natural.
+- Short = about 180-230 words. Standard = about 280-350 words.
+- Do not invent a hiring manager name, street address, email, phone number, or date.
+- Return ONLY the letter body with a brief greeting and closing. Use "Dear Hiring Team," if no recipient is explicitly named. Close with "Sincerely,\\nRoger Barahona".`;
+
+  const controller=new AbortController();
+  const timeout=setTimeout(()=>controller.abort(),45000);
+  try{
+    const response=await fetch('https://api.openai.com/v1/responses',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':`Bearer ${process.env.OPENAI_API_KEY}`},
+      body:JSON.stringify({model:'gpt-6-luna',input:prompt,max_output_tokens:900}),
+      signal:controller.signal
+    });
+    const data=await response.json();
+    if(!response.ok){
+      console.error('Cover letter API diagnostic',JSON.stringify({status:response.status,code:data?.error?.code,type:data?.error?.type,message:data?.error?.message}));
+      return res.status(502).json({error:'The cover letter service could not complete this request. Please try again.'});
+    }
+    const letter=(data.output_text||data.output?.flatMap(x=>x.content||[]).find(x=>x.type==='output_text')?.text||'').trim();
+    if(!letter) return res.status(502).json({error:'The cover letter was generated but could not be read. Please try again.'});
+    return res.status(200).json({letter});
+  }catch(e){
+    console.error('Private cover letter error',e?.name||e);
+    return res.status(e?.name==='AbortError'?504:500).json({error:e?.name==='AbortError'?'The cover letter request timed out. Please try again.':'The cover letter service could not complete this request. Please try again.'});
+  }finally{clearTimeout(timeout)}
+};
