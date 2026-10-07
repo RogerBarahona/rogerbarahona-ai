@@ -30,7 +30,10 @@ Rules:
 - Open with a specific connection between the employer/role and Roger's most relevant documented experience. Do NOT open by introducing Roger with his title, years of experience, or a resume-style summary.
 - Avoid openings such as "I'm a Senior Product Owner with..." or similar biography-first introductions.
 - The first sentence should explain why Roger's background is relevant to this employer's problem, product, customers, or responsibilities. Keep it natural rather than flattering the company generically.
-- Prioritize the 2-4 strongest documented connections between Roger's background and the role.
+- Prioritize only the 2-3 strongest documented connections between Roger's background and the role. Relevance is more important than quantity.
+- Before writing, identify the job description's most important skills, responsibilities, domain terms, product terms, and recurring phrases. Naturally mirror high-value terminology ONLY when Roger's verified profile genuinely supports it.
+- Optimize for ATS/AI screening without keyword stuffing: use supported job-description terminology in context, preserve readability, and never add an unsupported skill or qualification merely because it appears in the job description.
+- Do not turn the letter into a compressed resume. Omit valid but lower-relevance accomplishments when stronger role-specific evidence is available.
 - Product Manager requirements may be supported by documented Product Owner responsibilities when genuinely transferable; do not falsely change Roger's job titles.
 - Do not mention missing qualifications or apologize for gaps.
 - Do not start with "I'm excited to apply" or generic enthusiasm.
