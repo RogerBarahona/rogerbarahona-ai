@@ -45,7 +45,11 @@ Rules:
 - Greeting and closing/signature do not count as body paragraphs.
 - Do not split the body into extra paragraphs. Compress or omit lower-priority details instead.
 - Do not invent a hiring manager name, street address, email, phone number, or date.
-- Return ONLY the letter body with a brief greeting and closing. Use "Dear Hiring Team," if no recipient is explicitly named. Close with "Sincerely,\\nRoger Barahona".`;
+- Return ONLY the letter body with a brief greeting and closing. Use "Dear Hiring Team," if no recipient is explicitly named.
+- REQUIRED CLOSING: Every cover letter must end exactly with these final two lines:
+Sincerely,
+Roger Barahona
+- Do not use any alternative closing such as "Best regards", "Regards", "Thank you", or another signature.`;
 
   const controller=new AbortController();
   const timeout=setTimeout(()=>controller.abort(),45000);
