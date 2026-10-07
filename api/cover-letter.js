@@ -27,6 +27,9 @@ Write a ${length} cover letter in a ${tone} tone.
 Rules:
 - Use ONLY facts supported by the verified profile. Never invent experience, metrics, employers, tools, education, certifications, dates, or achievements.
 - Tailor the letter to the actual role and employer when they are identifiable in the job description.
+- Open with a specific connection between the employer/role and Roger's most relevant documented experience. Do NOT open by introducing Roger with his title, years of experience, or a resume-style summary.
+- Avoid openings such as "I'm a Senior Product Owner with..." or similar biography-first introductions.
+- The first sentence should explain why Roger's background is relevant to this employer's problem, product, customers, or responsibilities. Keep it natural rather than flattering the company generically.
 - Prioritize the 2-4 strongest documented connections between Roger's background and the role.
 - Product Manager requirements may be supported by documented Product Owner responsibilities when genuinely transferable; do not falsely change Roger's job titles.
 - Do not mention missing qualifications or apologize for gaps.
