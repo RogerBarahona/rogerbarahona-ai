@@ -9,7 +9,7 @@ module.exports = async function handler(req,res){
   if(!process.env.OPENAI_API_KEY) return res.status(503).json({error:'AI service is not configured.'});
 
   const jobDescription=String(req.body?.jobDescription||'').trim();
-  const length=req.body?.length==='short'?'short':'standard';
+  const length=req.body?.length==='very-short'?'very-short':'concise';
   const tone=req.body?.tone==='conversational'?'conversational':'professional';
   if(jobDescription.length<80) return res.status(400).json({error:'Paste a fuller job description so the letter can be tailored accurately.'});
   if(jobDescription.length>12000) return res.status(400).json({error:'Job description is too long. Please keep it under 12,000 characters.'});
@@ -33,7 +33,7 @@ Rules:
 - Do not start with "I'm excited to apply" or generic enthusiasm.
 - Avoid clichés, keyword stuffing, and repeating the resume.
 - Keep it recruiter-friendly and natural.
-- Short = about 180-230 words. Standard = about 280-350 words.
+- HARD LIMIT: no more than 2 body paragraphs, regardless of length setting.\n- Concise = 2 body paragraphs, about 180-250 words total. Very-short = 1 body paragraph, about 120-170 words total.\n- Greeting and closing/signature do not count as body paragraphs.\n- Do not split the body into extra paragraphs. Compress or omit lower-priority details instead.
 - Do not invent a hiring manager name, street address, email, phone number, or date.
 - Return ONLY the letter body with a brief greeting and closing. Use "Dear Hiring Team," if no recipient is explicitly named. Close with "Sincerely,\\nRoger Barahona".`;
 
